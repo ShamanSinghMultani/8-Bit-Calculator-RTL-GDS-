@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_calculator_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_calculator_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="150.366 ns"></ZoomEndTime>
+      <Cursor1Time time="10,470.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="166"></NameColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="25" />
+   <wvobject fp_name="/tb_calculator_top/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/rst_n" type="logic">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/start" type="logic">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/opcode" type="array">
+      <obj_property name="ElementShortName">opcode[2:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/operand_a" type="array">
+      <obj_property name="ElementShortName">operand_a[7:0]</obj_property>
+      <obj_property name="ObjectShortName">operand_a[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/operand_b" type="array">
+      <obj_property name="ElementShortName">operand_b[7:0]</obj_property>
+      <obj_property name="ObjectShortName">operand_b[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/result" type="array">
+      <obj_property name="ElementShortName">result[15:0]</obj_property>
+      <obj_property name="ObjectShortName">result[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/done" type="logic">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/busy" type="logic">
+      <obj_property name="ElementShortName">busy</obj_property>
+      <obj_property name="ObjectShortName">busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/flag_zero" type="logic">
+      <obj_property name="ElementShortName">flag_zero</obj_property>
+      <obj_property name="ObjectShortName">flag_zero</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/flag_carry" type="logic">
+      <obj_property name="ElementShortName">flag_carry</obj_property>
+      <obj_property name="ObjectShortName">flag_carry</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/flag_borrow" type="logic">
+      <obj_property name="ElementShortName">flag_borrow</obj_property>
+      <obj_property name="ObjectShortName">flag_borrow</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/flag_div_zero" type="logic">
+      <obj_property name="ElementShortName">flag_div_zero</obj_property>
+      <obj_property name="ObjectShortName">flag_div_zero</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/flag_invalid_op" type="logic">
+      <obj_property name="ElementShortName">flag_invalid_op</obj_property>
+      <obj_property name="ObjectShortName">flag_invalid_op</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/pass_count" type="array">
+      <obj_property name="ElementShortName">pass_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pass_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/fail_count" type="array">
+      <obj_property name="ElementShortName">fail_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">fail_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/div_quotient" type="array">
+      <obj_property name="ElementShortName">div_quotient[7:0]</obj_property>
+      <obj_property name="ObjectShortName">div_quotient[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/div_remainder" type="array">
+      <obj_property name="ElementShortName">div_remainder[7:0]</obj_property>
+      <obj_property name="ObjectShortName">div_remainder[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/WIDTH" type="array">
+      <obj_property name="ElementShortName">WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/CLK_PERIOD" type="array">
+      <obj_property name="ElementShortName">CLK_PERIOD[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLK_PERIOD[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/OP_ADD" type="array">
+      <obj_property name="ElementShortName">OP_ADD[2:0]</obj_property>
+      <obj_property name="ObjectShortName">OP_ADD[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/OP_SUB" type="array">
+      <obj_property name="ElementShortName">OP_SUB[2:0]</obj_property>
+      <obj_property name="ObjectShortName">OP_SUB[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/OP_MUL" type="array">
+      <obj_property name="ElementShortName">OP_MUL[2:0]</obj_property>
+      <obj_property name="ObjectShortName">OP_MUL[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_calculator_top/OP_DIV" type="array">
+      <obj_property name="ElementShortName">OP_DIV[2:0]</obj_property>
+      <obj_property name="ObjectShortName">OP_DIV[2:0]</obj_property>
+   </wvobject>
+</wave_config>

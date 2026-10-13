@@ -1,0 +1,13 @@
+0.7
+2020.2
+Dec 15 2024
+09:05:09
+C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/array_multiplier.v,1788192329,verilog,,C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/calculator_top.v,,array_multiplier,,,,,,,,
+C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/calculator_top.v,1788192329,verilog,,C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/full_adder.v,,calculator_top,,,,,,,,
+C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/full_adder.v,1788192329,verilog,,C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/full_subtractor.v,,full_adder,,,,,,,,
+C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/full_subtractor.v,1788192329,verilog,,C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/restoring_divider.v,,full_subtractor,,,,,,,,
+C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/restoring_divider.v,1788192329,verilog,,C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/ripple_borrow_subtractor.v,,restoring_divider,,,,,,,,
+C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/ripple_borrow_subtractor.v,1788192330,verilog,,C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/ripple_carry_adder.v,,ripple_borrow_subtractor,,,,,,,,
+C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/ripple_carry_adder.v,1788192330,verilog,,C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/03_Simulation/tb_calculator_top.v,,ripple_carry_adder,,,,,,,,
+C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.sim/sim_1/behav/xsim/glbl.v,1724786425,verilog,,,,glbl,,,,,,,,
+C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/03_Simulation/tb_calculator_top.v,1788194082,verilog,,,,tb_calculator_top,,,,,,,,

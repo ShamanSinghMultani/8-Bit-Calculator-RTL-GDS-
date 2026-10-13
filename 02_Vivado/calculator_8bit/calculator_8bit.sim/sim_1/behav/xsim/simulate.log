@@ -1,0 +1,37 @@
+Time resolution is 1 ps
+
+======================================================
+  8-BIT ARITHMETIC CALCULATOR - TESTBENCH
+  Design Implementation of an 8-Bit Arithmetic
+  Calculator Using Verilog from RTL-to-GDSII
+======================================================
+
+------------------------------------------------------
+ PHASE 1 : DEMONSTRATION
+------------------------------------------------------
+ ADDITION
+  t=60 ns |   25  +   17  =     42      | carry=0 zero=0
+  t=110 ns |  200  +  100  =    300      | carry=1 zero=0
+ SUBTRACTION
+  t=160 ns |   90  -   35  =     55      | borrow=0 zero=0
+  t=210 ns |   20  -   50  =    226      | borrow=1 zero=0
+ MULTIPLICATION
+  t=260 ns |   12  x   12  =    144      | zero=0
+  t=310 ns |  255  x  255  =  65025      | zero=0
+ DIVISION
+  t=460 ns |  144  /   12  =   12 rem   0    | div_zero=0
+  t=610 ns |  100  /    7  =   14 rem   2    | div_zero=0
+  t=680 ns |   50  /    0  =  DIVIDE BY ZERO  | div_zero=1
+
+------------------------------------------------------
+ PHASE 2 : SELF-CHECKING REGRESSION
+------------------------------------------------------
+ Directed corner cases complete : 28 passed, 0 failed
+ Randomised stimulus complete.
+
+======================================================
+  RESULTS : 230 passed, 0 failed, 230 total
+  OVERALL : ***** ALL TESTS PASSED *****
+======================================================
+
+$finish called at time : 10470 ns : File "C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/03_Simulation/tb_calculator_top.v" Line 361

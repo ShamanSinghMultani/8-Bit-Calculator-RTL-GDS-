@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.2.1 (64-bit)
+# SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
+# IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
+# SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
+# Start of session at: Tue Sep  1 16:53:21 2026
+# Process ID         : 26912
+# Current directory  : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.runs/synth_1
+# Command line       : vivado.exe -log calculator_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source calculator_top.tcl
+# Log file           : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.runs/synth_1/calculator_top.vds
+# Journal file       : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.runs/synth_1\vivado.jou
+# Running On         : Saksham_Dhingra
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13420H
+# CPU Frequency      : 2611 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 12
+# Host memory        : 16869 MB
+# Swap memory        : 10737 MB
+# Total Virtual      : 27606 MB
+# Available Virtual  : 8904 MB
+#-----------------------------------------------------------
+source calculator_top.tcl -notrace

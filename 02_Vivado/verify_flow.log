@@ -1,0 +1,130 @@
+#-----------------------------------------------------------
+# Vivado v2024.2.1 (64-bit)
+# SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
+# IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
+# SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
+# Start of session at: Mon Aug 31 21:40:20 2026
+# Process ID         : 30496
+# Current directory  : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado
+# Command line       : vivado.exe -mode batch -nojournal -log verify_flow.log -source verify_flow.tcl
+# Log file           : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/verify_flow.log
+# Journal file       : 
+# Running On         : Saksham_Dhingra
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13420H
+# CPU Frequency      : 2611 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 12
+# Host memory        : 16869 MB
+# Swap memory        : 10737 MB
+# Total Virtual      : 27606 MB
+# Available Virtual  : 11659 MB
+#-----------------------------------------------------------
+source verify_flow.tcl
+# set ROOT "C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII"
+# open_project $ROOT/02_Vivado/calculator_8bit/calculator_8bit.xpr
+INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+open_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 366.516 ; gain = 66.340
+# puts "#### STEP 1 : behavioural simulation ####"
+#### STEP 1 : behavioural simulation ####
+# launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'tb_calculator_top'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Users/saksh/OneDrive/Desktop/VD/Vivado/2024.2/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_calculator_top' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj tb_calculator_top_vlog.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_calculator_top_behav xil_defaultlib.tb_calculator_top xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2024.2.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Users/saksh/OneDrive/Desktop/VD/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_calculator_top_behav xil_defaultlib.tb_calculator_top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.full_adder
+Compiling module xil_defaultlib.ripple_carry_adder_default
+Compiling module xil_defaultlib.full_subtractor
+Compiling module xil_defaultlib.ripple_borrow_subtractor_default
+Compiling module xil_defaultlib.array_multiplier_default
+Compiling module xil_defaultlib.restoring_divider_default
+Compiling module xil_defaultlib.calculator_top
+Compiling module xil_defaultlib.tb_calculator_top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_calculator_top_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:12 . Memory (MB): peak = 371.230 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '13' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_calculator_top_behav -key {Behavioral:sim_1:Functional:tb_calculator_top} -tclbatch {tb_calculator_top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source tb_calculator_top.tcl
+## set curr_wave [current_wave_config]
+## if { [string length $curr_wave] == 0 } {
+##   if { [llength [get_objects]] > 0} {
+##     add_wave /
+##     set_property needs_save false [current_wave_config]
+##   } else {
+##      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+##   }
+## }
+## log_wave -r /
+## run 12us
+
+======================================================
+  8-BIT ARITHMETIC CALCULATOR - TESTBENCH
+  Design Implementation of an 8-Bit Arithmetic
+  Calculator Using Verilog from RTL-to-GDSII
+======================================================
+
+------------------------------------------------------
+ PHASE 1 : DEMONSTRATION
+------------------------------------------------------
+ ADDITION
+   25  +   17  =     42      | carry=0 zero=0
+  200  +  100  =    300      | carry=1 zero=0
+ SUBTRACTION
+   90  -   35  =     55      | borrow=0 zero=0
+   20  -   50  =    226      | borrow=1 zero=0
+ MULTIPLICATION
+   12  x   12  =    144      | zero=0
+  255  x  255  =  65025      | zero=0
+ DIVISION
+  144  /   12  =   12 rem   0    | div_zero=0
+  100  /    7  =   14 rem   2    | div_zero=0
+   50  /    0  =  DIVIDE BY ZERO  | div_zero=1
+
+------------------------------------------------------
+ PHASE 2 : SELF-CHECKING REGRESSION
+------------------------------------------------------
+ Directed corner cases complete : 28 passed, 0 failed
+ Randomised stimulus complete.
+
+======================================================
+  RESULTS : 230 passed, 0 failed, 230 total
+  OVERALL : ***** ALL TESTS PASSED *****
+======================================================
+
+$finish called at time : 10470 ns : File "C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/03_Simulation/tb_calculator_top.v" Line 357
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_calculator_top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 12us
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:22 . Memory (MB): peak = 385.738 ; gain = 19.223
+# run all

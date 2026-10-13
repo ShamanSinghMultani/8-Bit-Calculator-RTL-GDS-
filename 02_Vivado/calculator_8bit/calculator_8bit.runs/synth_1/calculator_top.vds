@@ -1,0 +1,266 @@
+#-----------------------------------------------------------
+# Vivado v2024.2.1 (64-bit)
+# SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
+# IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
+# SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
+# Start of session at: Tue Sep  1 16:53:21 2026
+# Process ID         : 26912
+# Current directory  : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.runs/synth_1
+# Command line       : vivado.exe -log calculator_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source calculator_top.tcl
+# Log file           : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.runs/synth_1/calculator_top.vds
+# Journal file       : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.runs/synth_1\vivado.jou
+# Running On         : Saksham_Dhingra
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13420H
+# CPU Frequency      : 2611 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 12
+# Host memory        : 16869 MB
+# Swap memory        : 10737 MB
+# Total Virtual      : 27606 MB
+# Available Virtual  : 8904 MB
+#-----------------------------------------------------------
+source calculator_top.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.srcs/utils_1/imports/synth_1/calculator_top.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.srcs/utils_1/imports/synth_1/calculator_top.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top calculator_top -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 36776
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1028.613 ; gain = 467.754
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'calculator_top' [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/calculator_top.v:35]
+INFO: [Synth 8-6157] synthesizing module 'ripple_carry_adder' [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/ripple_carry_adder.v:12]
+	Parameter WIDTH bound to: 8 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'full_adder' [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/full_adder.v:15]
+INFO: [Synth 8-6155] done synthesizing module 'full_adder' (0#1) [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/full_adder.v:15]
+INFO: [Synth 8-6155] done synthesizing module 'ripple_carry_adder' (0#1) [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/ripple_carry_adder.v:12]
+INFO: [Synth 8-6157] synthesizing module 'ripple_borrow_subtractor' [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/ripple_borrow_subtractor.v:15]
+	Parameter WIDTH bound to: 8 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'full_subtractor' [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/full_subtractor.v:14]
+INFO: [Synth 8-6155] done synthesizing module 'full_subtractor' (0#1) [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/full_subtractor.v:14]
+INFO: [Synth 8-6155] done synthesizing module 'ripple_borrow_subtractor' (0#1) [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/ripple_borrow_subtractor.v:15]
+INFO: [Synth 8-6157] synthesizing module 'array_multiplier' [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/array_multiplier.v:20]
+	Parameter WIDTH bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'array_multiplier' (0#1) [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/array_multiplier.v:20]
+INFO: [Synth 8-6157] synthesizing module 'restoring_divider' [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/restoring_divider.v:34]
+	Parameter WIDTH bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'restoring_divider' (0#1) [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/restoring_divider.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'calculator_top' (0#1) [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/01_RTL/calculator_top.v:35]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1137.574 ; gain = 576.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1137.574 ; gain = 576.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1137.574 ; gain = 576.715
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 1137.574 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/timing.xdc]
+Finished Parsing XDC File [C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/timing.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1225.859 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.053 . Memory (MB): peak = 1225.859 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:27 ; elapsed = 00:00:31 . Memory (MB): peak = 1225.859 ; gain = 665.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 1225.859 ; gain = 665.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 1225.859 ; gain = 665.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'calculator_top'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                                0 |                               00
+                   S_DIV |                                1 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'calculator_top'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1225.859 ; gain = 665.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    4 Bit       Adders := 1     
++---XORs : 
+	   3 Input      1 Bit         XORs := 80    
++---Registers : 
+	               16 Bit    Registers := 2     
+	                8 Bit    Registers := 5     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 10    
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 4     
+	   4 Input   16 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 3     
+	   2 Input    4 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 20    
+	   4 Input    1 Bit        Muxes := 5     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:38 ; elapsed = 00:00:42 . Memory (MB): peak = 1228.875 ; gain = 668.016
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:50 ; elapsed = 00:00:56 . Memory (MB): peak = 1328.777 ; gain = 767.918
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:50 ; elapsed = 00:00:56 . Memory (MB): peak = 1349.422 ; gain = 788.562
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:50 ; elapsed = 00:00:56 . Memory (MB): peak = 1352.000 ; gain = 791.141
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1554.918 ; gain = 994.059
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1554.918 ; gain = 994.059
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1554.918 ; gain = 994.059
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1554.918 ; gain = 994.059
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1554.918 ; gain = 994.059
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1554.918 ; gain = 994.059
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |BUFG |     1|
+|2     |LUT1 |     1|
+|3     |LUT2 |    42|
+|4     |LUT3 |    19|
+|5     |LUT4 |    33|
+|6     |LUT5 |    27|
+|7     |LUT6 |   116|
+|8     |FDRE |    86|
+|9     |IBUF |    22|
+|10    |OBUF |    23|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1554.918 ; gain = 994.059
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:40 ; elapsed = 00:00:57 . Memory (MB): peak = 1554.918 ; gain = 905.773
+Synthesis Optimization Complete : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1554.918 ; gain = 994.059
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1554.918 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1554.918 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 47c98951
+INFO: [Common 17-83] Releasing license: Synthesis
+34 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:01 ; elapsed = 00:01:13 . Memory (MB): peak = 1554.918 ; gain = 1184.859
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1554.918 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.runs/synth_1/calculator_top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file calculator_top_utilization_synth.rpt -pb calculator_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Sep  1 16:54:43 2026...

@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../../01_RTL/array_multiplier.v" \
+"../../../../../../01_RTL/calculator_top.v" \
+"../../../../../../01_RTL/full_adder.v" \
+"../../../../../../01_RTL/full_subtractor.v" \
+"../../../../../../01_RTL/restoring_divider.v" \
+"../../../../../../01_RTL/ripple_borrow_subtractor.v" \
+"../../../../../../01_RTL/ripple_carry_adder.v" \
+"../../../../../../03_Simulation/tb_calculator_top.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

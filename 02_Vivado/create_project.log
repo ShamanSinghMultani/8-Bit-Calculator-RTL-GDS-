@@ -1,0 +1,71 @@
+#-----------------------------------------------------------
+# Vivado v2024.2.1 (64-bit)
+# SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
+# IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
+# SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
+# Start of session at: Mon Aug 31 21:38:09 2026
+# Process ID         : 31104
+# Current directory  : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado
+# Command line       : vivado.exe -mode batch -nojournal -log create_project.log -source create_project.tcl
+# Log file           : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/create_project.log
+# Journal file       : 
+# Running On         : Saksham_Dhingra
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13420H
+# CPU Frequency      : 2611 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 12
+# Host memory        : 16869 MB
+# Swap memory        : 10737 MB
+# Total Virtual      : 27606 MB
+# Available Virtual  : 11378 MB
+#-----------------------------------------------------------
+source create_project.tcl
+# set ROOT      "C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII"
+# set PROJ_NAME "calculator_8bit"
+# set PROJ_DIR  "$ROOT/02_Vivado"
+# set PART      "xc7a35tcpg236-1"
+# puts "INFO: creating project $PROJ_NAME in $PROJ_DIR (part $PART)"
+INFO: creating project calculator_8bit in C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado (part xc7a35tcpg236-1)
+# create_project $PROJ_NAME $PROJ_DIR/$PROJ_NAME -part $PART -force
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 366.664 ; gain = 66.867
+# set_property target_language Verilog [current_project]
+# set_property simulator_language Verilog [current_project]
+# add_files -norecurse -fileset sources_1 [list \
+#   "$ROOT/01_RTL/full_adder.v"               \
+#   "$ROOT/01_RTL/full_subtractor.v"          \
+#   "$ROOT/01_RTL/ripple_carry_adder.v"       \
+#   "$ROOT/01_RTL/ripple_borrow_subtractor.v" \
+#   "$ROOT/01_RTL/array_multiplier.v"         \
+#   "$ROOT/01_RTL/restoring_divider.v"        \
+#   "$ROOT/01_RTL/calculator_top.v"           \
+# ]
+# set_property top calculator_top [get_filesets sources_1]
+# update_compile_order -fileset sources_1
+# add_files -norecurse -fileset sim_1 [list \
+#   "$ROOT/03_Simulation/tb_calculator_top.v" \
+# ]
+# set_property top tb_calculator_top [get_filesets sim_1]
+# update_compile_order -fileset sim_1
+# set_property -name {xsim.simulate.runtime} -value {12us} \
+#              -objects [get_filesets sim_1]
+# set_property -name {xsim.simulate.log_all_signals} -value {true} \
+#              -objects [get_filesets sim_1]
+# puts ""
+
+# puts "======================================================"
+======================================================
+# puts " PROJECT CREATED"
+ PROJECT CREATED
+# puts "   Project file : $PROJ_DIR/$PROJ_NAME/$PROJ_NAME.xpr"
+   Project file : C:/Users/saksh/Desktop/Calculator_RTL_to_GDSII/02_Vivado/calculator_8bit/calculator_8bit.xpr
+# puts "   Design top   : calculator_top"
+   Design top   : calculator_top
+# puts "   Testbench top: tb_calculator_top"
+   Testbench top: tb_calculator_top
+# puts "   Part         : $PART"
+   Part         : xc7a35tcpg236-1
+# puts "======================================================"
+======================================================
+INFO: [Common 17-206] Exiting Vivado at Mon Aug 31 21:38:22 2026...
