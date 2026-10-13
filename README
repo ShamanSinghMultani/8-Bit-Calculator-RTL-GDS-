@@ -1,0 +1,35 @@
+# 8-Bit Calculator: RTL to GDSII Flow 🧮 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## 📌 Project Overview
+This repository contains the complete **RTL to GDSII** flow for an **8-Bit Calculator**. Designed in **Verilog HDL**, this project implements fundamental arithmetic and logical operations and transitions them through standard digital physical design stages to generate the final GDSII layout. 
+
+This project serves as an exploration into end-to-end ASIC design flows, bridging frontend logic design with backend physical design.
+
+## ✨ Features
+* **8-Bit Data Path:** Handles 8-bit operands for robust arithmetic and logical processing.
+* **Operations Supported:**
+  * Arithmetic: Addition, Subtraction, Multiplication.
+  * Logical: AND, OR, XOR, NAND, NOR, NOT.
+* **Status Flags:** Zero (Z), Carry (C), and Overflow (V) flag indications.
+* **Complete Physical Design Flow:** Covers Synthesis, Floorplanning, Placement, CTS, Routing, and Sign-off.
+
+## 🛠️ Tools & Technologies Used
+* **Hardware Description Language:** Verilog HDL
+* **Simulation & Verification:** ModelSim / Cadence
+* **Synthesis:** Yosys / Cadence Genus
+* **Physical Design (RTL2GDS):** OpenLane / Cadence Innovus 
+* **PDK:** Skywater 130nm (Open-source)
+* **Layout Viewer:** Magic / KLayout
+
+## 📂 Repository Structure
+```text
+📦 8-Bit-Calculator-RTL-GDS-
+ ┣ 📂 src/             # Verilog RTL source files (e.g., alu.v, calculator.v)
+ ┣ 📂 tb/              # Testbench files for behavioral simulation
+ ┣ 📂 synth/           # Synthesis scripts and netlists
+ ┣ 📂 pd/              # Floorplan, Placement, CTS, and Routing reports
+ ┣ 📂 runs/            # Run configurations and log files
+ ┣ 📂 gds/             # Final GDSII layout files
+ ┗ 📜 README.md
