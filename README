@@ -1,35 +1,125 @@
-# 8-Bit Calculator: RTL to GDSII Flow 🧮 
+# 🧮 8-Bit Calculator: Full Custom RTL-to-GDSII ASIC Flow
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Verilog](https://img.shields.io/badge/Language-Verilog-blue.svg)](#)
+[![Physical Design](https://img.shields.io/badge/Flow-RTL_to_GDSII-orange.svg)](#)
 
 ## 📌 Project Overview
-This repository contains the complete **RTL to GDSII** flow for an **8-Bit Calculator**. Designed in **Verilog HDL**, this project implements fundamental arithmetic and logical operations and transitions them through standard digital physical design stages to generate the final GDSII layout. 
+This repository documents the complete **RTL to GDSII** physical design flow of an **8-Bit Calculator**. Moving beyond frontend digital logic, this project demonstrates the transformation of behavioral Verilog code into a fully routable, manufacturable silicon layout. 
 
-This project serves as an exploration into end-to-end ASIC design flows, bridging frontend logic design with backend physical design.
+The calculator features a robust ALU (Arithmetic Logic Unit) capable of handling 8-bit operands, processing fundamental arithmetic and bitwise logic operations, and managing status flags (Carry, Zero, Overflow). This project serves as a comprehensive case study in modern ASIC design methodologies, utilizing standard cell libraries and automated synthesis/routing tools.
 
-## ✨ Features
-* **8-Bit Data Path:** Handles 8-bit operands for robust arithmetic and logical processing.
-* **Operations Supported:**
-  * Arithmetic: Addition, Subtraction, Multiplication.
-  * Logical: AND, OR, XOR, NAND, NOR, NOT.
-* **Status Flags:** Zero (Z), Carry (C), and Overflow (V) flag indications.
-* **Complete Physical Design Flow:** Covers Synthesis, Floorplanning, Placement, CTS, Routing, and Sign-off.
+---
 
-## 🛠️ Tools & Technologies Used
-* **Hardware Description Language:** Verilog HDL
-* **Simulation & Verification:** ModelSim / Cadence
-* **Synthesis:** Yosys / Cadence Genus
-* **Physical Design (RTL2GDS):** OpenLane / Cadence Innovus 
-* **PDK:** Skywater 130nm (Open-source)
-* **Layout Viewer:** Magic / KLayout
+## 📐 Architecture & Features
+
+### Core Specifications
+* **Data Width:** 8-bit Input/Output Datapath.
+* **Control Unit:** Custom state machine for instruction decoding.
+* **Supported Operations:**
+  * **Arithmetic:** `ADD`, `SUB`, `MUL`, `DIV` (Optional based on implementation)
+  * **Logical:** `AND`, `OR`, `XOR`, `NAND`, `NOR`, `NOT`
+  * **Shifting:** `Logical Shift Left (LSL)`, `Logical Shift Right (LSR)`
+* **Flags:** Zero `(Z)`, Carry `(C)`, Overflow `(V)`, Negative `(N)`.
+
+### Block Diagram
+*(You can add a block diagram of your RTL architecture here)*
+> `![Block Diagram](images/block_diagram.png)`
+
+---
+
+## 🔬 The Physical Design Flow (RTL to GDSII)
+
+The journey from a hardware description language to a physical silicon die involves multiple complex stages. Below is the step-by-step visual documentation of the chip's physical design evolution.
+
+### 1. Synthesis & Gate-Level Netlist
+Before physical layout begins, the Verilog RTL is synthesized into a gate-level netlist using the target Process Design Kit (PDK). Logic gates are mapped to standard cells optimized for area, power, and timing.
+
+### 2. Floorplanning & Power Planning (PDN)
+Floorplanning sets the foundation of the chip. We define the core area, utilization factor, and aspect ratio. A critical part of this stage is the **Power Distribution Network (PDN)**.
+
+<div align="center">
+  
+  <!-- REPLACE THIS LINK WITH YOUR FLOORPLAN/PDN IMAGE -->
+  <img src="images/floorplan_pdn.png" alt="Floorplan and Power Grid" width="700"/>
+
+</div>
+
+> **🔍 What you are seeing:** 
+> In this die image, you can observe the macro placement and the heavy metal grids crossing the core. These are the `VDD` (Power) and `VSS` (Ground) rings and stripes. They are engineered to distribute power evenly across the chip to prevent voltage drop (IR Drop) and electromigration, ensuring that every logic gate receives a stable power supply during high-frequency switching.
+
+### 3. Placement
+Once the power grid is established, the synthesis netlist is mapped onto the floorplan. 
+
+<div align="center">
+  
+  <!-- REPLACE THIS LINK WITH YOUR PLACEMENT IMAGE -->
+  <img src="images/placement.png" alt="Global and Detailed Placement" width="700"/>
+
+</div>
+
+> **🔍 What you are seeing:** 
+> Here, thousands of standard cells (AND, OR, Flip-Flops) have been placed into standard cell rows. This image represents **Detailed Placement**. The tools use advanced algorithms to place communicating cells close to one another to minimize wire length, reducing parasitic capacitance and improving signal timing.
+
+### 4. Clock Tree Synthesis (CTS)
+A digital calculator relies on perfect synchronization. CTS builds a distribution network for the clock signal.
+
+<div align="center">
+  
+  <!-- REPLACE THIS LINK WITH YOUR CTS IMAGE -->
+  <img src="images/cts.png" alt="Clock Tree Synthesis" width="700"/>
+
+</div>
+
+> **🔍 What you are seeing:** 
+> The bright routing trees radiating from the clock source represent the Clock Tree. Clock buffers and inverters have been inserted across the die to ensure the clock signal reaches every sequential element (like flip-flops) at the exact same time. This minimizes **Clock Skew** and prevents setup and hold timing violations.
+
+### 5. Signal Routing
+With cells placed and the clock network built, the final step is routing the data signals.
+
+<div align="center">
+  
+  <!-- REPLACE THIS LINK WITH YOUR ROUTING IMAGE -->
+  <img src="images/routing.png" alt="Detailed Signal Routing" width="700"/>
+
+</div>
+
+> **🔍 What you are seeing:** 
+> This incredibly dense web of lines shows the global and detailed routing using various metal layers (M1, M2, M3, etc.). The router navigates the complex maze of placed cells to connect them according to the synthesized netlist while strictly adhering to the foundry's Design Rule Checks (DRC) to prevent short circuits and spacing violations.
+
+### 6. Sign-off & Final GDSII Die
+After routing, the design undergoes rigorous physical verification, including Parasitic Extraction (RCX), Static Timing Analysis (STA), DRC, and Layout Versus Schematic (LVS) checks.
+
+<div align="center">
+  
+  <!-- REPLACE THIS LINK WITH YOUR FINAL GDSII IMAGE -->
+  <img src="images/final_gds.png" alt="Final GDSII Layout" width="800"/>
+
+</div>
+
+> **🔍 What you are seeing:** 
+> This is the final **GDSII (Graphic Data System) layout**—the exact blueprint that gets sent to the silicon foundry for fabrication. Every polygon, via, standard cell, and metal track you see corresponds to the physical masks that will be etched into the silicon wafer using photolithography. 
+
+---
+
+## 🛠️ Tools & Technologies 
+* **Design & Verification:** Verilog HDL, ModelSim / Cadence Xcelium
+* **Logic Synthesis:** Yosys / Cadence Genus
+* **Physical Design (PnR):** OpenLane / Cadence Innovus
+* **Layout Viewer:** KLayout / Magic VLSI
+* **Target Node/PDK:** Skywater 130nm / FreePDK45 *(Adjust based on your project)*
+
+---
 
 ## 📂 Repository Structure
+
 ```text
 📦 8-Bit-Calculator-RTL-GDS-
- ┣ 📂 src/             # Verilog RTL source files (e.g., alu.v, calculator.v)
+ ┣ 📂 src/             # Verilog RTL source files (calculator.v, alu.v)
  ┣ 📂 tb/              # Testbench files for behavioral simulation
- ┣ 📂 synth/           # Synthesis scripts and netlists
- ┣ 📂 pd/              # Floorplan, Placement, CTS, and Routing reports
- ┣ 📂 runs/            # Run configurations and log files
- ┣ 📂 gds/             # Final GDSII layout files
- ┗ 📜 README.md
+ ┣ 📂 constraints/     # SDC (Synopsys Design Constraints) files for timing
+ ┣ 📂 synth/           # Synthesized gate-level netlists and reports
+ ┣ 📂 pd/              # Physical design stage reports (Floorplan, CTS, Routing)
+ ┣ 📂 images/          # Die layouts, block diagrams, and routing visualizer snaps
+ ┣ 📂 gds/             # Final exported GDSII and LEF files
+ ┗ 📜 README.md        # Project documentation
