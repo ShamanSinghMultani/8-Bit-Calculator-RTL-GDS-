@@ -9,7 +9,6 @@
 ![Stage](https://img.shields.io/badge/Stages-Sim%20·%20Synth%20·%20PnR%20·%20Sign--off-success)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-<!-- EDIT: replace with your final layout screenshot -->
 <img src="05_Physical_GDSII/die.png" alt="Final GDSII layout of the 8-bit calculator" width="800"/>
 
 </div>
@@ -26,24 +25,22 @@ This repo takes a small **8-bit calculator (ALU + control FSM)** through the *en
 
 ## 📐 Architecture
 
-<!-- EDIT: match the opcode list below to what your RTL actually implements -->
-
 | Block | Role |
 |-------|------|
-| **Control FSM** | Decodes the opcode and sequences load → execute → writeback |
-| **ALU** | 8-bit arithmetic, logic and shift operations |
-| **Operand / result registers** | Hold A, B and the result between cycles |
-| **Flag logic** | Generates status flags from the ALU result |
+| **Control FSM** | 2-state FSM (`IDLE`, `DIV`) with a `start` / `busy` / `done` handshake |
+| **Adder / Subtractor / Multiplier** | Structural, combinational — built from full-adder and full-subtractor cells |
+| **Restoring divider** | Sequential, 8 cycles |
+| **Result register & flags** | 16-bit `result`, plus `zero`, `carry`, `borrow`, `div_zero`, `invalid_op` |
 
 ```mermaid
 flowchart LR
-    A["Operand A [7:0]"] --> ALU
-    B["Operand B [7:0]"] --> ALU
-    OP["Opcode"] --> FSM["Control FSM"]
-    FSM -->|"control signals"| ALU["ALU"]
-    ALU --> R["Result Reg [7:0]"]
-    ALU --> F["Flags: Z · C · V · N"]
-    CLK(["clk / rst"]) -.-> FSM
+    A["Operand A [7:0]"] --> U["ADD · SUB · MUL · DIV"]
+    B["Operand B [7:0]"] --> U
+    OP["Opcode [2:0]"] --> FSM["Control FSM"]
+    FSM -->|"control"| U
+    U --> R["Result Reg [15:0]"]
+    U --> F["Flags: zero · carry · borrow · div_zero · invalid_op"]
+    CLK(["clk / rst_n"]) -.-> FSM
     CLK -.-> R
 ```
 
@@ -51,10 +48,9 @@ flowchart LR
 
 | Category | Operations |
 |----------|-----------|
-| Arithmetic | `ADD`, `SUB`, `MUL` <!-- EDIT: add/remove (e.g. DIV) to match your RTL --> |
-| Logical | `AND`, `OR`, `XOR`, `NAND`, `NOR`, `NOT` |
-| Shift | `LSL`, `LSR` |
-| Flags | Zero `Z` · Carry `C` · Overflow `V` · Negative `N` |
+| Arithmetic | `ADD` (`000`), `SUB` (`001`), `MUL` (`010`), `DIV` (`011`) |
+| Invalid opcode | Any other opcode → `result = 0`, `invalid_op` flag set |
+| Flags | `zero` · `carry` (ADD) · `borrow` (SUB, a < b) · `div_zero` (DIV by 0) · `invalid_op` |
 
 ---
 
@@ -118,18 +114,16 @@ Final checks before tape-out: **STA** (setup/hold), **DRC**, **LVS** and parasit
 
 ## 📊 Results
 
-<!-- EDIT: fill from your synthesis / PnR / sign-off reports -->
-
 | Metric | Value |
 |--------|-------|
-| Target PDK / node | TBD |
-| Clock frequency | TBD MHz |
-| Cell count | TBD |
-| Core area | TBD µm² |
-| Utilization | TBD % |
-| Setup slack (WNS) | TBD ns |
-| Hold slack | TBD ns |
-| Total power | TBD mW |
+| Target PDK / node | SkyWater 130 nm (`sky130_fd_sc_hd`) |
+| Clock frequency | 50 MHz (20 ns) |
+| Cell count | 822 (post-synthesis) |
+| Core area | ≈ 20,822 µm² (die ≈ 0.026 mm²) |
+| Utilization | 40 % (core), 0.55 placement density |
+| Setup slack (post-route) | +9.11 ns |
+| Hold slack (post-route) | +0.33 ns |
+| Total power (typical corner) | ≈ 0.61 mW |
 | DRC violations | 0 |
 | LVS | Clean |
 
@@ -137,16 +131,14 @@ Final checks before tape-out: **STA** (setup/hold), **DRC**, **LVS** and parasit
 
 ## 🛠️ Tools
 
-<!-- EDIT: keep only what you actually used -->
-
 | Stage | Tool |
 |-------|------|
-| RTL / Simulation | Verilog HDL, ModelSim / Vivado Simulator |
-| FPGA | Xilinx Vivado |
-| Logic Synthesis | Yosys / Cadence Genus |
-| Place & Route | OpenLane / Cadence Innovus |
-| Layout Viewing | KLayout / Magic |
-| PDK | SkyWater 130 nm / FreePDK45 |
+| RTL / Simulation | Verilog HDL, Vivado Simulator (XSim) |
+| FPGA | Xilinx Vivado 2024.2 (Artix-7 `xc7a35tcpg236-1`) |
+| Logic Synthesis | Yosys (via OpenLane) |
+| Place & Route | OpenLane (OpenROAD, TritonRoute) |
+| Sign-off / Viewing | OpenSTA, Magic, Netgen, KLayout |
+| PDK | SkyWater 130 nm (`sky130_fd_sc_hd`) |
 
 ---
 
@@ -156,10 +148,9 @@ Final checks before tape-out: **STA** (setup/hold), **DRC**, **LVS** and parasit
 8-Bit-Calculator-RTL-GDSII/
 ├── 01_RTL/              # Verilog source (ALU, control FSM, top)
 ├── 02_Vivado/           # Vivado project for FPGA prototyping
-├── 03_Simulation/       # Testbench, waveforms, simulation logs
-├── 04_Synthesis/        # Constraints, gate-level netlist, synthesis reports
-├── 05_Physical_GDSII/   # Floorplan, placement, CTS, routing, sign-off, final GDSII
-├── images/              # Screenshots used in this README
+├── 03_Simulation/       # Self-checking testbench (tb_calculator_top.v)
+├── 04_Synthesis/        # Vivado utilization / timing / power reports
+├── 05_Physical_GDSII/   # Final GDSII, DEF, OpenLane metrics, sign-off reports, layout renders
 ├── .gitignore
 └── README.md
 ```
@@ -173,17 +164,17 @@ git clone https://github.com/ShamanSinghMultani/8-Bit-Calculator-RTL-GDSII.git
 cd 8-Bit-Calculator-RTL-GDSII
 ```
 
-**Simulate** — open `03_Simulation` in ModelSim / Vivado and run the testbench against `01_RTL`.
+**Simulate** — open the project in `02_Vivado` and run behavioral simulation with `tb_calculator_top` as the top module.
 
-**FPGA** — open the project in `02_Vivado` and run synthesis → implementation.
+**FPGA** — in the same Vivado project, run synthesis → implementation.
 
-**ASIC flow** — follow the scripts in `04_Synthesis` and `05_Physical_GDSII` (<!-- EDIT: add exact command, e.g. `./flow.tcl -design calculator` -->).
+**ASIC flow** — run OpenLane on the design (`./flow.tcl -design calculator_8bit`). Final outputs and reports are in `05_Physical_GDSII`.
 
 ---
 
 ## 🔮 Future Work
 
-- Add `DIV` and signed arithmetic
+- Add signed arithmetic
 - Pipeline the ALU and re-run timing closure at a higher clock
 - Power analysis and area/timing trade-off sweeps across utilization targets
 - Formal equivalence check between RTL and netlist
