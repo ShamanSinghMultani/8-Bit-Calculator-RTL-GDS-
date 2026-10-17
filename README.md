@@ -10,7 +10,7 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 <!-- EDIT: replace with your final layout screenshot -->
-<img src="images/final_gds.png" alt="Final GDSII layout of the 8-bit calculator" width="800"/>
+<img src="05_Physical_GDSII/die.png" alt="Final GDSII layout of the 8-bit calculator" width="800"/>
 
 </div>
 
@@ -85,7 +85,7 @@ RTL is mapped onto standard cells from the target PDK, optimized for area, power
 ### 4️⃣ Floorplanning & Power Planning — [`05_Physical_GDSII`](05_Physical_GDSII)
 
 <div align="center">
-  <img src="images/floorplan_pdn.png" alt="Floorplan and power grid" width="700"/>
+  <img src="05_Physical_GDSII/die_zoom.png" alt="Floorplan and power grid" width="700"/>
 </div>
 
 Core area, utilization and aspect ratio are set here, followed by the **Power Distribution Network**: `VDD`/`VSS` rings and stripes engineered to limit **IR drop** and **electromigration** so every cell sees a stable supply during switching.
@@ -93,23 +93,20 @@ Core area, utilization and aspect ratio are set here, followed by the **Power Di
 ### 5️⃣ Placement
 
 <div align="center">
-  <img src="images/placement.png" alt="Standard cell placement" width="700"/>
+  <img src="05_Physical_GDSII/die_metal_zoom.png" alt="Standard cell placement" width="700"/>
 </div>
 
 Standard cells are placed into rows, with connected cells pulled close together to cut wirelength, parasitic capacitance and delay.
 
 ### 6️⃣ Clock Tree Synthesis
 
-<div align="center">
-  <img src="images/cts.png" alt="Clock tree" width="700"/>
-</div>
 
 Clock buffers/inverters are inserted so the clock reaches every flip-flop at nearly the same time, minimizing **skew** and avoiding setup/hold violations.
 
 ### 7️⃣ Routing
 
 <div align="center">
-  <img src="images/routing.png" alt="Detailed routing" width="700"/>
+  <img src="05_Physical_GDSII/die_metal.png" alt="Detailed routing" width="700"/>
 </div>
 
 Global and detailed routing across the metal stack (M1, M2, M3, …) connects every net while obeying the foundry's design rules.
