@@ -1,125 +1,203 @@
-# 🧮 8-Bit Calculator: Full Custom RTL-to-GDSII ASIC Flow
+<div align="center">
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Verilog](https://img.shields.io/badge/Language-Verilog-blue.svg)](#)
-[![Physical Design](https://img.shields.io/badge/Flow-RTL_to_GDSII-orange.svg)](#)
+# 🧮 8-Bit Calculator — RTL to GDSII
 
-## 📌 Project Overview
-This repository documents the complete **RTL to GDSII** physical design flow of an **8-Bit Calculator**. Moving beyond frontend digital logic, this project demonstrates the transformation of behavioral Verilog code into a fully routable, manufacturable silicon layout. 
+**A complete digital ASIC flow: behavioral Verilog → verified RTL → synthesized netlist → routed, sign-off-ready GDSII layout.**
 
-The calculator features a robust ALU (Arithmetic Logic Unit) capable of handling 8-bit operands, processing fundamental arithmetic and bitwise logic operations, and managing status flags (Carry, Zero, Overflow). This project serves as a comprehensive case study in modern ASIC design methodologies, utilizing standard cell libraries and automated synthesis/routing tools.
+![Verilog](https://img.shields.io/badge/HDL-Verilog-blue)
+![Flow](https://img.shields.io/badge/Flow-RTL%20→%20GDSII-orange)
+![Stage](https://img.shields.io/badge/Stages-Sim%20·%20Synth%20·%20PnR%20·%20Sign--off-success)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+<!-- EDIT: replace with your final layout screenshot -->
+<img src="images/final_gds.png" alt="Final GDSII layout of the 8-bit calculator" width="800"/>
+
+</div>
 
 ---
 
-## 📐 Architecture & Features
+## 📌 Overview
 
-### Core Specifications
-* **Data Width:** 8-bit Input/Output Datapath.
-* **Control Unit:** Custom state machine for instruction decoding.
-* **Supported Operations:**
-  * **Arithmetic:** `ADD`, `SUB`, `MUL`, `DIV` (Optional based on implementation)
-  * **Logical:** `AND`, `OR`, `XOR`, `NAND`, `NOR`, `NOT`
-  * **Shifting:** `Logical Shift Left (LSL)`, `Logical Shift Right (LSR)`
-* **Flags:** Zero `(Z)`, Carry `(C)`, Overflow `(V)`, Negative `(N)`.
+This repo takes a small **8-bit calculator (ALU + control FSM)** through the *entire* ASIC design flow, not just frontend RTL. Every stage — functional simulation, FPGA prototyping, logic synthesis, floorplanning, placement, clock tree synthesis, routing and physical sign-off — is documented with scripts, reports and layout snapshots, so the whole thing is reproducible.
 
-### Block Diagram
-*(You can add a block diagram of your RTL architecture here)*
-> `![Block Diagram](images/block_diagram.png)`
+**Why this project:** it's small enough to run the full flow end-to-end, but real enough to hit the actual physical design problems — power grid, congestion, clock skew, timing closure, DRC/LVS.
 
 ---
 
-## 🔬 The Physical Design Flow (RTL to GDSII)
+## 📐 Architecture
 
-The journey from a hardware description language to a physical silicon die involves multiple complex stages. Below is the step-by-step visual documentation of the chip's physical design evolution.
+<!-- EDIT: match the opcode list below to what your RTL actually implements -->
 
-### 1. Synthesis & Gate-Level Netlist
-Before physical layout begins, the Verilog RTL is synthesized into a gate-level netlist using the target Process Design Kit (PDK). Logic gates are mapped to standard cells optimized for area, power, and timing.
+| Block | Role |
+|-------|------|
+| **Control FSM** | Decodes the opcode and sequences load → execute → writeback |
+| **ALU** | 8-bit arithmetic, logic and shift operations |
+| **Operand / result registers** | Hold A, B and the result between cycles |
+| **Flag logic** | Generates status flags from the ALU result |
 
-### 2. Floorplanning & Power Planning (PDN)
-Floorplanning sets the foundation of the chip. We define the core area, utilization factor, and aspect ratio. A critical part of this stage is the **Power Distribution Network (PDN)**.
+```mermaid
+flowchart LR
+    A["Operand A [7:0]"] --> ALU
+    B["Operand B [7:0]"] --> ALU
+    OP["Opcode"] --> FSM["Control FSM"]
+    FSM -->|"control signals"| ALU["ALU"]
+    ALU --> R["Result Reg [7:0]"]
+    ALU --> F["Flags: Z · C · V · N"]
+    CLK(["clk / rst"]) -.-> FSM
+    CLK -.-> R
+```
 
-<div align="center">
-  
-  <!-- REPLACE THIS LINK WITH YOUR FLOORPLAN/PDN IMAGE -->
-  <img src="images/floorplan_pdn.png" alt="Floorplan and Power Grid" width="700"/>
+### Supported operations
 
-</div>
-
-> **🔍 What you are seeing:** 
-> In this die image, you can observe the macro placement and the heavy metal grids crossing the core. These are the `VDD` (Power) and `VSS` (Ground) rings and stripes. They are engineered to distribute power evenly across the chip to prevent voltage drop (IR Drop) and electromigration, ensuring that every logic gate receives a stable power supply during high-frequency switching.
-
-### 3. Placement
-Once the power grid is established, the synthesis netlist is mapped onto the floorplan. 
-
-<div align="center">
-  
-  <!-- REPLACE THIS LINK WITH YOUR PLACEMENT IMAGE -->
-  <img src="images/placement.png" alt="Global and Detailed Placement" width="700"/>
-
-</div>
-
-> **🔍 What you are seeing:** 
-> Here, thousands of standard cells (AND, OR, Flip-Flops) have been placed into standard cell rows. This image represents **Detailed Placement**. The tools use advanced algorithms to place communicating cells close to one another to minimize wire length, reducing parasitic capacitance and improving signal timing.
-
-### 4. Clock Tree Synthesis (CTS)
-A digital calculator relies on perfect synchronization. CTS builds a distribution network for the clock signal.
-
-<div align="center">
-  
-  <!-- REPLACE THIS LINK WITH YOUR CTS IMAGE -->
-  <img src="images/cts.png" alt="Clock Tree Synthesis" width="700"/>
-
-</div>
-
-> **🔍 What you are seeing:** 
-> The bright routing trees radiating from the clock source represent the Clock Tree. Clock buffers and inverters have been inserted across the die to ensure the clock signal reaches every sequential element (like flip-flops) at the exact same time. This minimizes **Clock Skew** and prevents setup and hold timing violations.
-
-### 5. Signal Routing
-With cells placed and the clock network built, the final step is routing the data signals.
-
-<div align="center">
-  
-  <!-- REPLACE THIS LINK WITH YOUR ROUTING IMAGE -->
-  <img src="images/routing.png" alt="Detailed Signal Routing" width="700"/>
-
-</div>
-
-> **🔍 What you are seeing:** 
-> This incredibly dense web of lines shows the global and detailed routing using various metal layers (M1, M2, M3, etc.). The router navigates the complex maze of placed cells to connect them according to the synthesized netlist while strictly adhering to the foundry's Design Rule Checks (DRC) to prevent short circuits and spacing violations.
-
-### 6. Sign-off & Final GDSII Die
-After routing, the design undergoes rigorous physical verification, including Parasitic Extraction (RCX), Static Timing Analysis (STA), DRC, and Layout Versus Schematic (LVS) checks.
-
-<div align="center">
-  
-  <!-- REPLACE THIS LINK WITH YOUR FINAL GDSII IMAGE -->
-  <img src="images/final_gds.png" alt="Final GDSII Layout" width="800"/>
-
-</div>
-
-> **🔍 What you are seeing:** 
-> This is the final **GDSII (Graphic Data System) layout**—the exact blueprint that gets sent to the silicon foundry for fabrication. Every polygon, via, standard cell, and metal track you see corresponds to the physical masks that will be etched into the silicon wafer using photolithography. 
+| Category | Operations |
+|----------|-----------|
+| Arithmetic | `ADD`, `SUB`, `MUL` <!-- EDIT: add/remove (e.g. DIV) to match your RTL --> |
+| Logical | `AND`, `OR`, `XOR`, `NAND`, `NOR`, `NOT` |
+| Shift | `LSL`, `LSR` |
+| Flags | Zero `Z` · Carry `C` · Overflow `V` · Negative `N` |
 
 ---
 
-## 🛠️ Tools & Technologies 
-* **Design & Verification:** Verilog HDL, ModelSim / Cadence Xcelium
-* **Logic Synthesis:** Yosys / Cadence Genus
-* **Physical Design (PnR):** OpenLane / Cadence Innovus
-* **Layout Viewer:** KLayout / Magic VLSI
-* **Target Node/PDK:** Skywater 130nm / FreePDK45 *(Adjust based on your project)*
+## 🔁 Design Flow
+
+```mermaid
+flowchart LR
+    S1["RTL<br/>(Verilog)"] --> S2["Simulation<br/>& Verification"]
+    S2 --> S3["FPGA Prototype<br/>(Vivado)"]
+    S3 --> S4["Logic Synthesis<br/>→ Gate Netlist"]
+    S4 --> S5["Floorplan<br/>& PDN"]
+    S5 --> S6["Placement"]
+    S6 --> S7["Clock Tree<br/>Synthesis"]
+    S7 --> S8["Routing"]
+    S8 --> S9["Sign-off<br/>STA · DRC · LVS"]
+    S9 --> S10["GDSII"]
+```
+
+### 1️⃣ RTL & Verification — [`01_RTL`](01_RTL) · [`03_Simulation`](03_Simulation)
+Synthesizable Verilog for the ALU, control FSM and top module, plus a testbench that drives the opcodes and checks results and flags against expected values.
+
+### 2️⃣ FPGA Prototype — [`02_Vivado`](02_Vivado)
+Vivado project for FPGA-level synthesis, implementation and on-board sanity checking before committing to the ASIC flow.
+
+### 3️⃣ Logic Synthesis — [`04_Synthesis`](04_Synthesis)
+RTL is mapped onto standard cells from the target PDK, optimized for area, power and timing under the SDC constraints. Output: a gate-level netlist plus area/timing reports.
+
+### 4️⃣ Floorplanning & Power Planning — [`05_Physical_GDSII`](05_Physical_GDSII)
+
+<div align="center">
+  <img src="images/floorplan_pdn.png" alt="Floorplan and power grid" width="700"/>
+</div>
+
+Core area, utilization and aspect ratio are set here, followed by the **Power Distribution Network**: `VDD`/`VSS` rings and stripes engineered to limit **IR drop** and **electromigration** so every cell sees a stable supply during switching.
+
+### 5️⃣ Placement
+
+<div align="center">
+  <img src="images/placement.png" alt="Standard cell placement" width="700"/>
+</div>
+
+Standard cells are placed into rows, with connected cells pulled close together to cut wirelength, parasitic capacitance and delay.
+
+### 6️⃣ Clock Tree Synthesis
+
+<div align="center">
+  <img src="images/cts.png" alt="Clock tree" width="700"/>
+</div>
+
+Clock buffers/inverters are inserted so the clock reaches every flip-flop at nearly the same time, minimizing **skew** and avoiding setup/hold violations.
+
+### 7️⃣ Routing
+
+<div align="center">
+  <img src="images/routing.png" alt="Detailed routing" width="700"/>
+</div>
+
+Global and detailed routing across the metal stack (M1, M2, M3, …) connects every net while obeying the foundry's design rules.
+
+### 8️⃣ Sign-off & GDSII
+Final checks before tape-out: **STA** (setup/hold), **DRC**, **LVS** and parasitic extraction. The result is the **GDSII** — the polygon-level layout that maps directly to the fabrication masks.
+
+---
+
+## 📊 Results
+
+<!-- EDIT: fill from your synthesis / PnR / sign-off reports -->
+
+| Metric | Value |
+|--------|-------|
+| Target PDK / node | TBD |
+| Clock frequency | TBD MHz |
+| Cell count | TBD |
+| Core area | TBD µm² |
+| Utilization | TBD % |
+| Setup slack (WNS) | TBD ns |
+| Hold slack | TBD ns |
+| Total power | TBD mW |
+| DRC violations | 0 |
+| LVS | Clean |
+
+---
+
+## 🛠️ Tools
+
+<!-- EDIT: keep only what you actually used -->
+
+| Stage | Tool |
+|-------|------|
+| RTL / Simulation | Verilog HDL, ModelSim / Vivado Simulator |
+| FPGA | Xilinx Vivado |
+| Logic Synthesis | Yosys / Cadence Genus |
+| Place & Route | OpenLane / Cadence Innovus |
+| Layout Viewing | KLayout / Magic |
+| PDK | SkyWater 130 nm / FreePDK45 |
 
 ---
 
 ## 📂 Repository Structure
 
 ```text
-📦 8-Bit-Calculator-RTL-GDS-
- ┣ 📂 src/             # Verilog RTL source files (calculator.v, alu.v)
- ┣ 📂 tb/              # Testbench files for behavioral simulation
- ┣ 📂 constraints/     # SDC (Synopsys Design Constraints) files for timing
- ┣ 📂 synth/           # Synthesized gate-level netlists and reports
- ┣ 📂 pd/              # Physical design stage reports (Floorplan, CTS, Routing)
- ┣ 📂 images/          # Die layouts, block diagrams, and routing visualizer snaps
- ┣ 📂 gds/             # Final exported GDSII and LEF files
- ┗ 📜 README.md        # Project documentation
+8-Bit-Calculator-RTL-GDSII/
+├── 01_RTL/              # Verilog source (ALU, control FSM, top)
+├── 02_Vivado/           # Vivado project for FPGA prototyping
+├── 03_Simulation/       # Testbench, waveforms, simulation logs
+├── 04_Synthesis/        # Constraints, gate-level netlist, synthesis reports
+├── 05_Physical_GDSII/   # Floorplan, placement, CTS, routing, sign-off, final GDSII
+├── images/              # Screenshots used in this README
+├── .gitignore
+└── README.md
+```
+
+---
+
+## ▶️ Getting Started
+
+```bash
+git clone https://github.com/ShamanSinghMultani/8-Bit-Calculator-RTL-GDSII.git
+cd 8-Bit-Calculator-RTL-GDSII
+```
+
+**Simulate** — open `03_Simulation` in ModelSim / Vivado and run the testbench against `01_RTL`.
+
+**FPGA** — open the project in `02_Vivado` and run synthesis → implementation.
+
+**ASIC flow** — follow the scripts in `04_Synthesis` and `05_Physical_GDSII` (<!-- EDIT: add exact command, e.g. `./flow.tcl -design calculator` -->).
+
+---
+
+## 🔮 Future Work
+
+- Add `DIV` and signed arithmetic
+- Pipeline the ALU and re-run timing closure at a higher clock
+- Power analysis and area/timing trade-off sweeps across utilization targets
+- Formal equivalence check between RTL and netlist
+
+---
+
+## 📄 License
+
+Released under the [MIT License](LICENSE).
+
+## 👤 Author
+
+**Shaman Singh Multani** — B.Tech, Electronics Engineering (VLSI Design Technology), MAIT Delhi
+[GitHub](https://github.com/ShamanSinghMultani)
